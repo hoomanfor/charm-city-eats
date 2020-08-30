@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.query(`
-    INSERT INTO city_eats_db.Restaurants 
+    INSERT INTO Restaurants 
       (name, address, zip_code, neighborhood)
     VALUES
       ('410','4509 BELAIR ROAD',21206,'Frankford'),
