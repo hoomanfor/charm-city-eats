@@ -27,15 +27,7 @@ module.exports = {
       "neighborhood": {
         "type": Sequelize.STRING,
         "unique": false,
-        "allowNull": false
-      },
-      "createdAt": {
-        "type": Sequelize.DATE,
-        "defaultValue": Sequelize.fn('now')
-      },
-      "updatedAt": {
-        "type": Sequelize.DATE,
-        "defaultValue": Sequelize.fn('now')
+        "defaultValue": "Neighborhood information not provided."
       }
     })
   },

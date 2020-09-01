@@ -24,16 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     "neighborhood": {
       "type": DataTypes.STRING,
       "unique": false,
-      "allowNull": false
+      "defaultValue": "Neighborhood information not provided."
     },
-    "createdAt": {
-      "type": DataTypes.DATE,
-      "defaultValue": sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    "updatedAt": {
-      "type": DataTypes.DATE,
-      "defaultValue": sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-    }
+  }, {
+    timestamps: false
   });
   return Restaurant;
 };

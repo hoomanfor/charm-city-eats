@@ -16,7 +16,7 @@ const searchRestaurants = async (searchText) => {
   if (searchText.length === 0) {
     matches = [];
     matchList.html("");
-  }
+  };
 
   // console.log(matches);
   outputHtml(matches);
@@ -38,7 +38,40 @@ const outputHtml = matches => {
 
     // console.log(html)
     matchList.html(html);
-  }
-}
+  };
+};
 
+// Event listener for restaurant search
 $(document).on("input", () => searchRestaurants(search.val()));
+
+// Add a new restaurant to the database
+$(document).on("submit", function(event) {
+  event.preventDefault();
+  const restaurantForm = $("#restaurant-form")[0];
+  if (restaurantForm.checkValidity() === false) {
+    event.preventDefault();
+    event.stopPropagation();
+    $("#restaurant-form").addClass("was-validated");
+  } else {
+    const name = $("#restaurantName").val().trim();
+    const address = $("#streetAddress").val().trim();
+    const neighborhood = $("#neighborhood").val().trim();
+    const zip_code = $("#zipCode").val().trim();
+    const restaurant = {
+      name,
+      address,
+      neighborhood,
+      zip_code
+    };
+    console.log(restaurant)
+    $.ajax({
+      url: "/api/restaurants",
+      data: restaurant,
+      dataType: "json",
+      method: "POST"
+    }).then(function(response) {
+      $('#add-restaurant-form').modal('toggle')
+      $("#restaurant-form").removeClass("was-validated");
+    })
+  };
+});
