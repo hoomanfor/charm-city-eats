@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
 
     <title>Charm City Eats</title>
   </head>
@@ -18,13 +20,21 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-6 m-auto">
-          <h1 class="text-center mb-2">
+          <h1 class="text-center mb-3">
             <i class="fas fa-pizza-slice text-warning"></i> Charm City Eats
           </h1>
+          <!-- Search by name input -->
           <div class="form-group mb-2">
             <input type="text" id="search" class="form-control form-control-lg" placeholder="Search for restaurants by name...">
           </div>
+          <!-- Add a restaurant button -->
           <button type="button" class="btn btn-primary btn-lg btn-block mb-2" id="add" data-toggle="modal" data-target="#add-restaurant-form">Add a new restaurant</button>
+          <!-- Success alert -->
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Success!</strong> Your operation was successful.
+          </div>
+          <!-- Search results -->
           <div id="match-list"></div>
         </div>
       </div>
@@ -64,7 +74,31 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="create-submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Update restaurant name modal form -->
+    <div class="modal" id="update-restaurant-name">
+      <div class="modal-dialog" role="update-restaurant-name">
+        <form class="modal-content needs-validation" id="update-restaurant-form" novalidate>
+          <div class="modal-header">
+            <h5 class="modal-title">Update restaurant name</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="updateName">Revised restaurant name</label>
+                <input type="text" class="form-control" id="updateName" placeholder="Enter revised restaurant name" required>
+                <div class="invalid-feedback">Please enter a revised restaurant name</div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" id="update-submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>
