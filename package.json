@@ -1,7 +1,7 @@
 {
   "name": "charm-city-eats",
   "version": "1.0.0",
-  "description": "",
+  "description": "This website is designed to help Baltimore's community catalog its amazing restaurants.",
   "main": "server.js",
   "dependencies": {
     "dotenv": "^8.2.0",
