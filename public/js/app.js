@@ -3,7 +3,6 @@ const matchList = $("#match-list");
 
 // Search Restaurants and filter it
 const searchRestaurants = async (searchText) => {
-  $(".alert").hide()
   const response = await fetch("/api/restaurants");
   const restaurants = await response.json();
 
@@ -19,6 +18,7 @@ const searchRestaurants = async (searchText) => {
     matchList.html("");
   };
 
+  $(".alert").hide()
   outputHtml(matches);
 };
 
@@ -78,6 +78,7 @@ $("#create-submit").on("click", function(event) {
   };
 });
 
+// Update a restaurant name
 $("#update-submit").on("click", function(event) {
   event.preventDefault();
   const id = $("#update").data("id");
@@ -103,3 +104,16 @@ $("#update-submit").on("click", function(event) {
     });
   };
 });
+
+// Delete a restaurant name
+$(document).on("click", "#delete", function(event) {
+  const id = $(this).data("id");
+  $.ajax({
+    url: `/api/restaurants/${id}`,
+    dataType: "json",
+    method: "DELETE"
+  }).then(function(response) {
+    $(".alert").show()
+    matchList.html("");
+  });
+})
