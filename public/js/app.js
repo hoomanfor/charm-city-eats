@@ -18,7 +18,7 @@ const searchRestaurants = async (searchText) => {
     matchList.html("");
   };
 
-  $(".alert").hide()
+  $(".alert").hide();
   outputHtml(matches);
 };
 
@@ -71,9 +71,14 @@ $("#create-submit").on("click", function(event) {
       dataType: "json",
       method: "POST"
     }).then(function(response) {
-      $(".alert").show()
       $('#add-restaurant-form').modal('toggle')
       $("#restaurant-form").removeClass("was-validated");
+      $("#restaurantName").val("");
+      $("#streetAddress").val("");
+      $("#neighborhood").val("");
+      $("#zipCode").val("");
+      matchList.html("");
+      $(".alert").show();
     })
   };
 });
@@ -97,10 +102,11 @@ $("#update-submit").on("click", function(event) {
       dataType: "json",
       method: "PUT"
     }).then(function(response) {
-      $(".alert").show()
       $('#update-restaurant-name').modal('toggle')
       $("#update-restaurant-form").removeClass("was-validated");
       matchList.html("");
+      $("#updateName").val("");
+      $(".alert").show();
     });
   };
 });
@@ -113,7 +119,7 @@ $(document).on("click", "#delete", function(event) {
     dataType: "json",
     method: "DELETE"
   }).then(function(response) {
-    $(".alert").show()
     matchList.html("");
+    $(".alert").show();
   });
 })
